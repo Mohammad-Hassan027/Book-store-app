@@ -1,0 +1,15 @@
+const express = require("express");
+const {
+  createAOrder,
+  getOrderByEmail,
+} = require("../controllers/order-controllers");
+
+const router = express.Router();
+
+// create order endpoint
+router.post("/", createAOrder);
+
+// get orders by user email
+router.get("/email/:email", getOrderByEmail);
+
+module.exports = router;
