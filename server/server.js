@@ -8,12 +8,12 @@ const BookRouter = require("./routes/book-routes");
 const AdminRouter = require("./routes/admin-routes");
 const OrderRouter = require("./routes/order-routes");
 const AdminStatsRouter = require("./routes/admin-stats-routes");
-
+const frontendUrl = process.env.FRONTEND_URL;
 connectDb();
 app.use(express.json());
 app.use(
   cors({
-    origin: [process.env.FRONTEND_URL, "http://localhost:5173"],
+    origin: [frontendUrl, "http://localhost:5173"],
     credentials: true,
   })
 );
