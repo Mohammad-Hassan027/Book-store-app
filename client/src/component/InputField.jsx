@@ -7,6 +7,7 @@ const InputField = ({ label, name, type = "text", register, placeholder }) => {
       <input
         type={type}
         {...register(name, { required: true })}
+        step="0.01"
         className=" p-2 border w-full rounded-md focus:outline-none focus:ring focus:border-blue-300"
         placeholder={placeholder}
       />

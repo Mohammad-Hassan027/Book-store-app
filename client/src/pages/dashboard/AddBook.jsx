@@ -2,7 +2,7 @@ import { useState } from "react";
 import InputField from "../../component/InputField";
 import SelectField from "../../component/SelectField";
 import { useForm } from "react-hook-form";
-import { swal } from "sweetalert";
+import swal from "sweetalert";
 import { callAddBook } from "./../../api/book-api";
 
 const AddBook = () => {
@@ -21,15 +21,7 @@ const AddBook = () => {
         setIsLoading(false);
         console.log(data);
       });
-      swal.fire({
-        title: "Book added",
-        text: "Your book is uploaded successfully!",
-        icon: "success",
-        showCancelButton: true,
-        confirmButtonColor: "#3085d6",
-        cancelButtonColor: "#d33",
-        confirmButtonText: "Yes, It's Okay!",
-      });
+      swal("Book added", "Your book is uploaded successfully!", "success");
       reset();
       setimageFileName("");
       setimageFile(null);
@@ -51,7 +43,10 @@ const AddBook = () => {
       <h2 className="text-2xl font-bold text-gray-800 mb-4">Add New Book</h2>
 
       {/* Form starts here */}
-      <form onSubmit={handleSubmit(onSubmit)} className="">
+      <form
+        onSubmit={handleSubmit(onSubmit)}
+        className="transition-opacity duration-300 opacity-100"
+      >
         {/* Reusable Input Field for Title */}
         <InputField
           label="Title"

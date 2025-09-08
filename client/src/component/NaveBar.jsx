@@ -77,7 +77,11 @@ function NaveBar() {
                   <picture className="inline-block hover:scale-105">
                     <img
                       className="size-8 sm:size-9 md:size-10 object-cover overflow-hidden rounded-2xl sm:rounded-3xl"
-                      src={currentUser ? currentUser?.photo : userImg}
+                      src={
+                        currentUser && currentUser?.photo
+                          ? currentUser?.photo
+                          : userImg
+                      }
                       alt="user"
                     />
                   </picture>

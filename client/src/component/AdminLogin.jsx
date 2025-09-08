@@ -13,7 +13,10 @@ const AdminLogin = () => {
 
   const onSubmit = async (data) => {
     try {
+      console.log(data);
       await callAdminLogin(data?.username, data?.password);
+      console.log(data.password);
+
       navigate("/dashboard");
     } catch (err) {
       console.error("Login Failed", err);

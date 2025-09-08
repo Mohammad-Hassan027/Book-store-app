@@ -22,7 +22,7 @@ export const callGetBookById = async (id) => {
     const book = response.data.data;
     return book;
   } catch (error) {
-    console.error("Error fetching all books:", error);
+    console.error("Error fetching book:", error);
     return null;
   }
 };
@@ -39,7 +39,7 @@ export const callAddBook = async (newBookData) => {
     const book = response.data.data;
     return book;
   } catch (error) {
-    console.error("Error fetching all books:", error);
+    console.error("Error adding book:", error);
     return null;
   }
 };
@@ -56,7 +56,7 @@ export const callUpdateBook = async (id, updatedBookData) => {
     const book = response.data.data;
     return book;
   } catch (error) {
-    console.error("Error fetching all books:", error);
+    console.error("Error updating book:", error);
     return null;
   }
 };
@@ -72,7 +72,7 @@ export const callDeleteBook = async (id) => {
     const book = response.data.data;
     return book;
   } catch (error) {
-    console.error("Error fetching all books:", error);
+    console.error("Error deleting book:", error);
     return null;
   }
 };

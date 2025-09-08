@@ -13,11 +13,18 @@ import { callGetAllBooks } from "./../../api/book-api";
 
 const Recommanded = () => {
   const [books, setBooks] = useState([]);
+  const setOfBooks = books.slice(0, 8);
 
   useEffect(() => {
-    callGetAllBooks().then((data) => {
-      setBooks(data);
-    });
+    let isMounted = true;
+    if (location.pathname === "/") {
+      callGetAllBooks().then((data) => {
+        if (isMounted) setBooks(data);
+      });
+    }
+    return () => {
+      isMounted = false;
+    };
   }, []);
 
   return (
@@ -49,8 +56,8 @@ const Recommanded = () => {
           modules={[Pagination, Navigation]}
           className="mySwiper"
         >
-          {books.length > 0 &&
-            books.map((book, index) => (
+          {setOfBooks.length > 0 &&
+            setOfBooks.map((book, index) => (
               <SwiperSlide key={index}>
                 <BookCard book={book} />
               </SwiperSlide>

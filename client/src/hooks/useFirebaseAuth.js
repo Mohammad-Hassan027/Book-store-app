@@ -55,7 +55,7 @@ export function useFirebaseAuth() {
       isMounted = false;
       unsubscribe();
     };
-  }, [showError]);
+  }, []);
 
   const register = async (email, password) => {
     setIsLoading(true);

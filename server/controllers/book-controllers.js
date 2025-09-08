@@ -2,7 +2,7 @@ const Book = require("../models/book-model");
 
 const getAllBooks = async (req, res) => {
   try {
-    const books = await Book.find();
+    const books = await Book.find().sort({ createdAt: -1 });
     if (books.length > 0) {
       res.status(200).json({
         success: true,
@@ -69,7 +69,7 @@ const addNewBook = async (req, res) => {
       oldPrice,
       newPrice,
     });
-    
+
     if (req.body) {
       res.status(201).json({
         success: true,

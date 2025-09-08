@@ -67,7 +67,8 @@ function ManageBooks() {
                         {book.title}
                       </td>
                       <td className="border-t-0 px-6 align-center border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
-                        {book.category}
+                        {book?.category.charAt(0).toUpperCase() +
+                          book?.category.slice(1)}
                       </td>
                       <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
                         ${book.newPrice}

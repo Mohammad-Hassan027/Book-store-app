@@ -15,9 +15,11 @@ function SingleBook() {
   };
 
   useEffect(() => {
-    callGetBookById(id).then((data) => {
-      setBook(data);
-    });
+    if (location.pathname === "/book/:id") {
+      callGetBookById(id).then((data) => {
+        setBook(data);
+      });
+    }
   }, [id]);
 
   if (!book) {

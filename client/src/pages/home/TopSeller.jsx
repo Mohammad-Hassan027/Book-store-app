@@ -18,9 +18,9 @@ const TopSeller = () => {
   const filteredBooks =
     selectedCategory === "Choose a genre"
       ? books
-      : books.filter(
-          (book) => book.category === selectedCategory.toLowerCase()
-        );
+      : books
+          .filter((book) => book.category === selectedCategory.toLowerCase())
+          .slice(0, 8);
 
   const categories = [
     "Choose a genre",
@@ -31,9 +31,15 @@ const TopSeller = () => {
   ];
 
   useEffect(() => {
-    callGetAllBooks().then((data) => {
-      setBooks(data);
-    });
+    let isMounted = true;
+    if (location.pathname === "/") {
+      callGetAllBooks().then((data) => {
+        if (isMounted) setBooks(data);
+      });
+    }
+    return () => {
+      isMounted = false;
+    };
   }, []);
 
   return (

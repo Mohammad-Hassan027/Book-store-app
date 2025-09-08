@@ -3,11 +3,14 @@ import "./index.css";
 import { BrowserRouter } from "react-router-dom";
 import Router from "./routes/router";
 import Store from "./context";
+import React from "react";
 
 createRoot(document.getElementById("root")).render(
-  <BrowserRouter>
-    <Store>
-      <Router />
-    </Store>
-  </BrowserRouter>
+  <React.StrictMode>
+    <BrowserRouter>
+      <Store>
+        <Router />
+      </Store>
+    </BrowserRouter>
+  </React.StrictMode>
 );
