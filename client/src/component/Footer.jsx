@@ -1,7 +1,11 @@
 import foo from "../assets/footer-logo.png";
+import ig from "../assets/ig.png";
+import fa from "../assets/fa.png";
+import x from "../assets/x.png";
+
 function Footer() {
   return (
-    <footer className="py-4 flex flex-col gap-18 bg-gray-50 mt-10">
+    <footer className="py-6 flex flex-col gap-18 mt-10 shadow-2xl">
       {/* top section */}
       <div className="flex items-center justify-around gap-6 px-3">
         <div className="flex flex-col gap-4">
@@ -11,10 +15,26 @@ function Footer() {
             className="w-8 h-8 sm:w-12 sm:h-12 ml-1 sm:ml-7"
           />
           <ul className="flex flex-col md:flex-row gap-4">
-            <li><a href="#home" className="hover:text-primary">Home</a></li>
-            <li><a href="#services" className="hover:text-primary">Services</a></li>
-            <li><a href="#about" className="hover:text-primary">About Us</a></li>
-            <li><a href="#contact" className="hover:text-primary">Contact</a></li>
+            <li>
+              <a href="#home" className="hover:text-primary">
+                Home
+              </a>
+            </li>
+            <li>
+              <a href="#services" className="hover:text-primary">
+                Services
+              </a>
+            </li>
+            <li>
+              <a href="#about" className="hover:text-primary">
+                About Us
+              </a>
+            </li>
+            <li>
+              <a href="#contact" className="hover:text-primary">
+                Contact
+              </a>
+            </li>
           </ul>
         </div>
         <div className="">
@@ -24,10 +44,15 @@ function Footer() {
           </p>
           <div className="flex border border-yellow-300 rounded-xl overflow-hidden mt-2 sm:mt-3.5 md:mt-4 w-fit -mr-56">
             <input
-              type="text"
+              title="email"
+              type="email"
+              placeholder="Enter your email"
               className="px-0.5 py-1 sm:px-1.5 sm:py-2.5 md:px-2 md:py-3 outline-none w-32 sm:w-full"
             />
-            <button className="bg-yellow-400 px-1.5 py-1 sm:px-2 sm:py-2.5 md:px-4 md:py-3 text-white cursor-pointer">
+            <button
+              type="button"
+              className="bg-yellow-400 px-1.5 py-1 sm:px-2 sm:py-2.5 md:px-4 md:py-3 text-white cursor-pointer"
+            >
               Subscribe
             </button>
           </div>
@@ -44,9 +69,9 @@ function Footer() {
             <p>Legals</p>
           </div>
           <div className="flex gap-8 mr-3 px-4">
-            <p>ig</p>
-            <p>fa</p>
-            <p>X</p>
+            <img src={ig} alt="ig" className="size-6  object-cover" />
+            <img src={fa} alt="fa" className="size-6 object-cover" />
+            <img src={x} alt="x" className="size-6 object-cover" />
           </div>
         </div>
       </div>

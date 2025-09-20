@@ -1,6 +1,7 @@
 import { Link, Outlet, useNavigate } from "react-router-dom";
 import { HiViewGridAdd } from "react-icons/hi";
 import { MdOutlineManageHistory } from "react-icons/md";
+import { useState } from "react";
 
 function DashboardLayout() {
   const navigate = useNavigate();
@@ -8,11 +9,16 @@ function DashboardLayout() {
     localStorage.removeItem("token");
     navigate("/");
   };
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
   return (
     <>
       <section className="flex md:bg-gray-100 min-h-screen overflow-hidden">
-        <aside className="hidden sm:flex sm:flex-col">
+        <aside
+          className={`flex flex-col transition-transform duration-300 transform ${
+            isSidebarOpen ? "translate-x-0" : "-translate-x-full hidden"
+          } sm:translate-x-0 sm:flex`}
+        >
           <a
             href="/"
             className="inline-flex items-center justify-center h-20 w-20 bg-purple-600 hover:bg-purple-500 focus:bg-purple-500"
@@ -105,7 +111,10 @@ function DashboardLayout() {
         </aside>
         <div className="flex-grow text-gray-800">
           <header className="flex items-center h-20 px-6 sm:px-10 bg-white">
-            <button className="block sm:hidden relative flex-shrink-0 p-2 mr-2 text-gray-600 hover:bg-gray-100 hover:text-gray-800 focus:bg-gray-100 focus:text-gray-800 rounded-full">
+            <button
+              onClick={() => setIsSidebarOpen(!isSidebarOpen)}
+              className="block sm:hidden relative flex-shrink-0 p-2 mr-2 text-gray-600 hover:bg-gray-100 hover:text-gray-800 focus:bg-gray-100 focus:text-gray-800 rounded-full"
+            >
               <span className="sr-only">Menu</span>
               <svg
                 aria-hidden="true"
@@ -139,7 +148,7 @@ function DashboardLayout() {
                 type="text"
                 role="search"
                 placeholder="Search..."
-                className="py-2 pl-10 pr-4 w-full border-4 border-transparent placeholder-gray-400 focus:bg-gray-50 rounded-lg"
+                className="py-2 pl-10 pr-4 w-full max-w-md sm:-ml-2 border-4 border-transparent placeholder-gray-400 focus:bg-gray-50 rounded-lg"
               />
             </div>
             <div className="flex flex-shrink-0 items-center ml-auto">
@@ -221,7 +230,7 @@ function DashboardLayout() {
               <div className="flex flex-col md:flex-row items-start justify-end -mb-3">
                 <Link
                   to="/dashboard/manage-books"
-                  className="inline-flex px-5 py-3 text-purple-600 hover:text-purple-700 focus:text-purple-700 hover:bg-purple-100 focus:bg-purple-100 border border-purple-600 rounded-md mb-3"
+                  className="inline-flex px-5 py-3 text-purple-600 hover:text-purple-700 focus:text-purple-700 hover:bg-purple-100 focus:bg-purple-100 border border-purple-600 rounded-md mb-3 md:mb-0"
                 >
                   <svg
                     aria-hidden="true"
@@ -241,7 +250,7 @@ function DashboardLayout() {
                 </Link>
                 <Link
                   to="/dashboard/add-new-book"
-                  className="inline-flex px-5 py-3 text-white bg-purple-600 hover:bg-purple-700 focus:bg-purple-700 rounded-md ml-6 mb-3"
+                  className="inline-flex px-5 py-3 text-white bg-purple-600 hover:bg-purple-700 focus:bg-purple-700 rounded-md mb-3 md:ml-6"
                 >
                   <svg
                     aria-hidden="true"

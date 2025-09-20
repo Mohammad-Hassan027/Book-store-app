@@ -3,12 +3,16 @@ import { Link } from "react-router-dom";
 import { FiShoppingCart } from "react-icons/fi";
 import { useAuth } from "../../hooks/useAuth";
 import { memo } from "react";
+import BookCardSkeleton from "../../component/BookCardSkeleton";
 
 const BookCard = ({ book }) => {
   const { AddToCart } = useAuth();
   const handleAddToCart = (book) => {
     AddToCart(book);
   };
+
+  // if (loading) return <BookCardSkeleton />;
+
   return (
     <div className="p-3 hover:shadow-lg transition duration-300 ease-in-out min-h-[300px]">
       <div className="flex items-center">
@@ -17,7 +21,7 @@ const BookCard = ({ book }) => {
             <img
               src={`${getImgUrl(book?.coverImage)}`}
               alt={book.title}
-              className="w-full bg-cover p-2 rounded-md cursor-pointer hover:scale-105 transition-all duration-200"
+              className="w-full bg-cover p-2 rounded-md cursor-pointer hover:scale-105 transition-all duration-200 size-auto"
               loading="lazy"
             />
           </Link>
@@ -56,4 +60,3 @@ const BookCard = ({ book }) => {
 };
 
 export default memo(BookCard);
-

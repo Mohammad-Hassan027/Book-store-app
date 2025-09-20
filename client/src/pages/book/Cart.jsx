@@ -7,10 +7,10 @@ function Cart() {
   const { cartItems } = useAuth();
   return (
     <>
-      <div className="flex flex-col md:flex-row gap-4 md:p-4 justify-around h-[calc(100vh-130px)]">
-        <div className="p-1 md:p-4 w-auto md:w-2xl shadow-md bg-white rounded-lg">
+      <div className="flex flex-col md:flex-row gap-3 justify-around h-auto p-2 sm:p-4 md:p-8">
+        <div className="p-2 md:p-4 w-auto md:w-2xl shadow-md bg-white rounded-lg">
           <div className="mb-4">
-            <h1 className="text-2xl font-bold text-gray-900 mb-2 sm:text-3xl md:text-4xl">
+            <h1 className="text-2xl md:text-3xl font-mono text-gray-900 mb-2">
               Your Cart
             </h1>
           </div>
@@ -27,7 +27,7 @@ function Cart() {
             )}
           </div>
         </div>
-        <div className="h-45 w-auto md:w-3/8 p-1 md:p-4 bg-gray-100 rounded-lg shadow-md flex flex-col items-center">
+        <div className="h-fit w-auto md:w-3/8 p-4 bg-gray-100 rounded-lg shadow-md flex flex-col items-center">
           <div>
             <h1 className="text-3xl font-mono text-gray-900 mb-2">
               Order summary
@@ -44,18 +44,20 @@ function Cart() {
                 : 0}
             </p>
           </div>
-          <div className="flex gap-4">
+          <div className="flex flex-col md:flex-row gap-4">
             <button
+              type="button"
               onClick={() => navigate("/checkout")}
-              className="max-w-full px-4 mt-5 py-2 rounded-b-none bg-black text-white font-bold text-lg cursor-pointer"
+              className="max-w-full px-4 mt-5 py-2 bg-black text-white font-bold text-lg cursor-pointer rounded-md"
             >
               Checkout
             </button>
             <button
+              type="button"
               onClick={() => navigate("/")}
-              className="max-w-full px-4 mt-5 py-2 rounded-b-none bg-black text-white font-bold text-lg cursor-pointer"
+              className="max-w-full px-4  mt-5 py-2 bg-black text-white font-bold text-lg cursor-pointer rounded-md"
             >
-              Continue
+              Continue Shopping
             </button>
           </div>
         </div>

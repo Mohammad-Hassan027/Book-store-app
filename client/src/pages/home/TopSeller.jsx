@@ -10,10 +10,12 @@ import "swiper/css/navigation";
 import { Navigation, Pagination } from "swiper/modules";
 import BookCard from "../book/BookCard";
 import { callGetAllBooks } from "./../../api/book-api";
+import BookCardSkeleton from "../../component/BookCardSkeleton";
 
 const TopSeller = () => {
   const [books, setBooks] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState("Choose a genre");
+  const [isLoading, setIsLoading] = useState(true);
 
   const filteredBooks =
     selectedCategory === "Choose a genre"
@@ -34,7 +36,11 @@ const TopSeller = () => {
     let isMounted = true;
     if (location.pathname === "/") {
       callGetAllBooks().then((data) => {
-        if (isMounted) setBooks(data);
+        if (isMounted) {
+          setBooks(data);
+          setIsLoading(false);
+        }
+        
       });
     }
     return () => {
@@ -89,7 +95,7 @@ const TopSeller = () => {
           {filteredBooks.length > 0 &&
             filteredBooks.map((book, index) => (
               <SwiperSlide key={index}>
-                <BookCard book={book} />
+                {isLoading ? <BookCardSkeleton /> : <BookCard book={book} />}
               </SwiperSlide>
             ))}
         </Swiper>

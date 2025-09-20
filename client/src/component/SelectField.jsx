@@ -5,6 +5,7 @@ const SelectField = ({ label, name, options, register }) => {
         {label}
       </label>
       <select
+        title="select"
         {...register(name, { required: true })}
         className="w-full p-2 border rounded-md focus:outline-none focus:ring focus:border-blue-300"
       >

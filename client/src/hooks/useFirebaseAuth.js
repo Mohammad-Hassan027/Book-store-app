@@ -42,10 +42,10 @@ export function useFirebaseAuth() {
           photo: photoURL,
         });
 
-        // if (!emailVerified) {
-        // swal("Please verify your email address.", { icon: "warning" });
-        // navigate("/email-verification");
-        // }
+        if (!emailVerified) {
+          swal("Please verify your email address.", { icon: "warning" });
+          navigate("/email-verification");
+        }
       } else {
         setCurrentUser(null);
       }
@@ -55,7 +55,7 @@ export function useFirebaseAuth() {
       isMounted = false;
       unsubscribe();
     };
-  }, []);
+  }, [navigate]);
 
   const register = async (email, password) => {
     setIsLoading(true);

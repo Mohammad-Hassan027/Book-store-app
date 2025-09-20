@@ -10,16 +10,21 @@ import "swiper/css/navigation";
 import { Navigation, Pagination } from "swiper/modules";
 import BookCard from "../book/BookCard";
 import { callGetAllBooks } from "./../../api/book-api";
+import BookCardSkeleton from "../../component/BookCardSkeleton";
 
 const Recommanded = () => {
   const [books, setBooks] = useState([]);
   const setOfBooks = books.slice(0, 8);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     let isMounted = true;
     if (location.pathname === "/") {
       callGetAllBooks().then((data) => {
-        if (isMounted) setBooks(data);
+      if (isMounted) {
+        setBooks(data);
+        setIsLoading(false);
+      }
       });
     }
     return () => {
@@ -59,7 +64,7 @@ const Recommanded = () => {
           {setOfBooks.length > 0 &&
             setOfBooks.map((book, index) => (
               <SwiperSlide key={index}>
-                <BookCard book={book} />
+                {isLoading ? <BookCardSkeleton /> : <BookCard book={book} />}
               </SwiperSlide>
             ))}
         </Swiper>

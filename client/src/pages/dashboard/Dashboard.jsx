@@ -295,7 +295,7 @@ function Dashboard() {
           </div>
         </div>
       </section>
-      <section className="text-right font-semibold text-gray-500">
+      {/* <section className="text-right font-semibold text-gray-500">
         <a href="#" className="text-purple-600 hover:underline">
           Recreated on Codepen
         </a>{" "}
@@ -314,7 +314,7 @@ function Dashboard() {
           original design
         </a>{" "}
         made by Chili Labs
-      </section>
+      </section> */}
     </>
   );
 }

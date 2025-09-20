@@ -4,6 +4,7 @@ import { getImgUrl } from "../../utils/getImage";
 import { FiShoppingCart } from "react-icons/fi";
 import { callGetBookById } from "../../api/book-api";
 import { useAuth } from "../../hooks/useAuth";
+import BookCardSkeleton from "./../../component/BookCardSkeleton";
 
 function SingleBook() {
   const { id } = useParams();
@@ -15,40 +16,44 @@ function SingleBook() {
   };
 
   useEffect(() => {
-    if (location.pathname === "/book/:id") {
-      callGetBookById(id).then((data) => {
+    callGetBookById(id)
+      .then((data) => {
         setBook(data);
+      })
+      .catch((error) => {
+        console.error("Failed to fetch book:", error);
+        setBook(null); // or show an error component
       });
-    }
   }, [id]);
 
-  if (!book) {
-    return <div>Loading book...</div>;
+  if (!book || Object.keys(book).length === 0) {
+    return <div className="p-50"><BookCardSkeleton /></div> ;
   }
 
   return (
-    <div className="p-5 md:p-20 h-[calc(100vh-129px)]">
+    <div className="p-5 md:p-20 h-auto">
       <div className="flex flex-col md:flex-row items-start md:items-center gap-15 shadow-2xl p-5 md:p-10 rounded-xl">
         <div className="w-60 h-80 sm:w-64 sm:h-96 flex-shrink-0">
           <img
             className="w-full h-full"
             src={getImgUrl(book?.coverImage)}
-            alt={book?.title}
+            alt={book?.title || "Book cover"}
+            loading="lazy"
           />
         </div>
         <div className="flex flex-col gap-4">
           <h2 className="text-3xl font-bold tracking-wider">
-            {book ? book?.title : "Book Title"}
+            {book?.title || "Book Title"}
           </h2>
           <div className="flex items-center gap-60">
             <p className="text-xl font-semibold">
               Category:{" "}
-              <span className="font-normal">
-                {book && book.category
-                  ? book?.category.charAt(0).toUpperCase() +
-                    book?.category.slice(1)
-                  : ""}
-              </span>
+              {book?.category && (
+                <span className="font-normal">
+                  {book.category.charAt(0).toUpperCase() +
+                    book.category.slice(1)}
+                </span>
+              )}
             </p>
             <p className="font-semibold text-xl">
               {book && book?.trending ? "Trending ️✅" : ""}

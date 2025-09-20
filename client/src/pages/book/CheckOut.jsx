@@ -93,7 +93,7 @@ function CheckOut() {
                         placeholder={currentUser?.email || "email@domain.com"}
                       />
                     </div>
-                    <div className="md:col-span-5">
+                    <div className="md:col-span-5 text-center md:text-right">
                       <label html="phone">Phone Number</label>
                       <input
                         {...register("phone", { required: true })}

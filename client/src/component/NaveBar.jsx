@@ -9,6 +9,7 @@ import { IoSearchOutline } from "react-icons/io5";
 import { HiOutlineUser } from "react-icons/hi";
 import userImg from "../assets/avatar.png";
 import { useAuth } from "../hooks/useAuth";
+import logo from "../assets/logo.png";
 
 const navigations = [
   { name: "Home", path: "/" },
@@ -44,13 +45,13 @@ function NaveBar() {
   }, [dropdownRef, isOpen]); // Rerun effect if dropdownRef or isOpen changes
 
   return (
-    <header className="max-w-screen-2xl mx-auto px-3 md:px-8 py-6 bg-white sticky top-0 z-50 shadow-md">
+    <header className="max-w-screen-3xl mx-auto px-3 md:px-8 py-6 bg-white sticky top-0 z-50 shadow-md">
       <nav className="w-full flex justify-between items-center">
         {/* left side */}
-        <div className="flex items-center md:gap-12 gap-3">
+        <div className="flex items-center md:gap-12 gap-2">
           {/* home */}
-          <Link to="/">
-            <HiMiniBars3CenterLeft className="size-8" />
+          <Link to="/" className="cursor-pointer size-9 sm:size-13 md:size-16">
+            <img src={logo} alt="Logo" className="object-cover" />
           </Link>
           {/* search input */}
           <div className="relative sm:w-72 w-40 space-x-2">
@@ -82,12 +83,12 @@ function NaveBar() {
                           ? currentUser?.photo
                           : userImg
                       }
-                      alt="user"
+                      alt={`${currentUser?.name}'s profile picture`}
                     />
                   </picture>
                 </button>
                 {isOpen && (
-                  <div className="absolute -right-15 sm:right-5 top-11 bg-white shadow-lg rounded-md p-3 sm:p-4 w-30 sm:w-36">
+                  <div className="absolute -right-10 sm:right-4 top-11 bg-white shadow-lg rounded-md p-3 sm:p-4 w-30 sm:w-36">
                     <ul className="space-y-2">
                       {navigations.map((nav) => (
                         <li key={nav.name}>
@@ -123,10 +124,15 @@ function NaveBar() {
               </Link>
             )}
           </div>
-          <button className="hidden sm:block cursor-pointer">
+          <button
+            type="button"
+            title="Favorites"
+            className="hidden sm:block cursor-pointer"
+          >
             <HiOutlineHeart className="size-6" />
           </button>
           <Link
+            aria-label="Go to cart page"
             to="/cart"
             className="bg-yellow-400 text-white text-xl py-2 px-6 hidden md:flex items-center gap-3 rounded-sm cursor-pointer"
           >

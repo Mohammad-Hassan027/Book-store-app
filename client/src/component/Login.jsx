@@ -46,6 +46,7 @@ function Login() {
             <input
               {...register("email", { required: true })}
               type="email"
+              placeholder="abc@gmail.com"
               id="email"
               name="email"
               className="w-full rounded h-[42px] border-none text-black bg-gray-200 text-[17px] outline-none drop-shadow-sm transition-all duration-300 ease-in-out focus:bg-gray-100 focus:drop-shadow-lg focus-visible:outline-none focus-visible:right-0 focus-visible:ring-offset-0 px-2"
@@ -63,6 +64,7 @@ function Login() {
             <input
               {...register("password", { required: true, minLength: 6 })}
               type="password"
+              placeholder="Your Password"
               id="password"
               name="password"
               className="w-full rounded h-[42px] border-none text-black bg-gray-200 text-[17px] outline-none drop-shadow-sm transition-all duration-300 ease-in-out focus:bg-gray-100 focus:drop-shadow-lg focus-visible:outline-none focus-visible:right-0 focus-visible:ring-offset-0 px-2"
@@ -89,6 +91,7 @@ function Login() {
         </form>
         <div>
           <button
+            type="button"
             onClick={signInWithGoogle}
             className="bg-gray-700 hover:bg-blue-800 text-white text-lg px-4 py-2 rounded-md"
           >
