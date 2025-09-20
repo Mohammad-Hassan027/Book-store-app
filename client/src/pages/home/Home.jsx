@@ -2,6 +2,7 @@ import Hero from "./Hero";
 import News from "./News";
 import Recommanded from "./Recommanded";
 import TopSeller from "./TopSeller";
+import Trending from "./Trending";
 
 function Home() {
 
@@ -10,6 +11,7 @@ function Home() {
       <Hero />
       <TopSeller />
       <Recommanded />
+      <Trending />
       <News />
     </div>
   );

@@ -12,29 +12,31 @@ import BookCard from "../book/BookCard";
 import { callGetAllBooks } from "./../../api/book-api";
 import BookCardSkeleton from "../../component/BookCardSkeleton";
 
-const Recommanded = () => {
+function Trending() {
   const [books, setBooks] = useState([]);
-  const setOfBooks = books.sort(() => 0.5 - Math.random()).slice(0, 8);
   const [isLoading, setIsLoading] = useState(true);
+  const trending = books
+    .filter((book) => book.trending === true)
+    .sort(() => 0.5 - Math.random())
+    .slice(0, 8);
 
   useEffect(() => {
     let isMounted = true;
     if (location.pathname === "/") {
       callGetAllBooks().then((data) => {
-      if (isMounted) {
-        setBooks(data);
-        setIsLoading(false);
-      }
+        if (isMounted) {
+          setBooks(data);
+          setIsLoading(false);
+        }
       });
     }
     return () => {
       isMounted = false;
     };
   }, []);
-
   return (
     <div className="pt-5 pb-3 md:px-7 px-2">
-      <h2 className="text-3xl font-normal mb-6">Recommanded for you</h2>
+      <h2 className="text-3xl font-normal mb-6">Trending this month</h2>
       <div className="px-0 md:px-5">
         <Swiper
           slidesPerView={1}
@@ -61,8 +63,8 @@ const Recommanded = () => {
           modules={[Pagination, Navigation]}
           className="mySwiper"
         >
-          {setOfBooks.length > 0 &&
-            setOfBooks.map((book, index) => (
+          {trending.length > 0 &&
+            trending.map((book, index) => (
               <SwiperSlide key={index}>
                 {isLoading ? <BookCardSkeleton /> : <BookCard book={book} />}
               </SwiperSlide>
@@ -71,6 +73,6 @@ const Recommanded = () => {
       </div>
     </div>
   );
-};
+}
 
-export default Recommanded;
+export default Trending;
