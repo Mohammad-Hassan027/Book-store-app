@@ -101,7 +101,7 @@ export function useFirebaseAuth() {
 
   const EmailVerification = () => {
     // [START auth_send_email_verification]
-    sendEmailVerification(auth, auth.currentUser)
+    sendEmailVerification(auth.currentUser)
       .then(() => {
         swal("Verification email sent!", "Check in spams", "success");
         // Email verification sent!
